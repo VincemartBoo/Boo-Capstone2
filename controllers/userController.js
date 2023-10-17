@@ -53,7 +53,7 @@ module.exports.userCheckout = async (req, res) => {
 	console.log(req.body.productId)
 	
 	if(req.user.isAdmin){
-		return res.send("Action Forbidden!!!")
+		return res.send({message : "Action Forbidden!!!"});
 	}
 
 	const user_id = await User.findById(req.user.id);
@@ -66,7 +66,7 @@ module.exports.userCheckout = async (req, res) => {
     const totalPrice = req.body.quantity * productPrice
 
     if(isAvailable !== true){
-    	return res.send({notice: "Out of stock!"});
+    	return res.send({notice : "Out of stock!"});
     }
     
     
@@ -85,7 +85,7 @@ module.exports.userCheckout = async (req, res) => {
 		return user.save().then(user => true).catch(err => err.message)
 	})
 	if(isOrderUpdated !== true){
-		return res.send({message : isOrderUpdated})
+		return res.send({message : "isOrderUpdated"})
 	}
 
 	let isProductUpdated = await Product.findById(req.body.productId).then(product => {
@@ -126,7 +126,7 @@ module.exports.retrieveUserDetails = (req, res) => {
 module.exports.updateUserAsAdmin = async (req, res) => {
 
     if(req.user.isAdmin !== true ) {
-      return res.send({ note: "Permission denied!" });
+      return res.send({note : "Permission denied!" });
     }
 
     let {userId} = req.body;
@@ -136,7 +136,7 @@ module.exports.updateUserAsAdmin = async (req, res) => {
 			return res.send(false)
 		}
 		else{
-			return res.send({message: "User updated as Admin Successfully"})
+			return res.send({message : "User updated as Admin Successfully"})
 		}
 	})
 }
@@ -148,7 +148,7 @@ module.exports.retrieveUserOrder = async (req, res) => {
 	// console.log(req.body.courseId)
 	
 	if(req.user.isAdmin){
-		return res.send("Action Forbidden")
+		return res.send({message : "Action Forbidden")
 	}
 
     let isUserOrder = await User.findById(req.user.id).then(result => {
