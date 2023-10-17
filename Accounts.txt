@@ -1,0 +1,19 @@
+ACCOUNTS:
+
+Admin:
+email: luffy@mail.com
+password: luffy1234
+
+
+Users:
+email: sanji@mail.com
+password: sanji1234
+
+email: shanks@mail.com
+password: shanks1234
+
+email: nami@mail.com
+password: nami1234
+
+email: zoro@mail.com
+password: zoro1234
